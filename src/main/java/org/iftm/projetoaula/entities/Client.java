@@ -3,13 +3,18 @@ package org.iftm.projetoaula.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 // anotação que indica ao JPA que essa classe é uma entidade no BD.
 @Entity
+// anotação que permite modificar as caracteristicas da tabela relacionada a classe
+@Table(name="tb_client")
 public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -21,11 +26,20 @@ public class Client implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+    // anotação que permite modificar as caracteristicas do campo na tabela relacionada ao atributo da classe
+    @Column(nullable=false, length=200, unique=false)
     private String name;
+    @Column(nullable=false, length=14, unique=true)
     private String cpf;
+    @Column(nullable=false, unique=false)
     private Double income;
+    @Column(nullable=true, unique=false)
     private Instant birthDate;
-    private Integer children;
+    @Column(nullable=true, unique=false)
+    private Integer children = 0;
+    // anotação que define a não persistencia do atributo no banco de dados.
+    @Transient    
+    private boolean status = true;
     
     //construtores
     public Client(){}
