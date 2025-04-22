@@ -44,7 +44,7 @@ public class Client implements Serializable {
     //construtores
     public Client(){}
 
-    public Client(Instant birthDate, Integer children, String cpf, Long id, Double income, String name) {
+    public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children ) {
         this.birthDate = birthDate;
         this.children = children;
         this.cpf = cpf;

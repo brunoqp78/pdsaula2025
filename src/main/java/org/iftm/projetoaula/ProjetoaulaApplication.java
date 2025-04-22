@@ -35,10 +35,10 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 		cliente.setCpf("000111222-22");
 		cliente.setIncome(10000.00);
 		cliente.setChildren(3);
-		cliente.setBirthDate(Instant.parse("1978-10-09T04:30:00.00Z"));
-		repositorio.save(cliente);
+		cliente.setBirthDate(Instant.parse("1978-10-09T04:30:00.00Z"));		
+		repositorio.save(cliente);		
 
-		Client cliente2 = new Client(Instant.parse("1978-10-09T04:30:00.00Z"), 2, "11111", null, 12000.00, "Jose");
+		Client cliente2 = new Client(null, "Jose","11111", 12000.00, Instant.parse("1978-10-09T04:30:00.00Z"), 2);
 		repositorio.save(cliente2);
 
 		cliente2.setName("Maria");
