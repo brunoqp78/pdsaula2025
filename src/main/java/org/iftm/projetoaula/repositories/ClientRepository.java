@@ -10,30 +10,30 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long>{
 
-    public ArrayList<Client> findByChildren(int children);
+    public ArrayList<Client> findByChildren(int qtdFilhos);
 
-    public ArrayList<Client> findByName(String name);
+    public ArrayList<Client> findByName(String nome);
 
-    public ArrayList<Client> findByNameAndChildren(String string, int i);
+    public ArrayList<Client> findByNameAndChildren(String nome, int qtdFilhos);
 
-    public ArrayList<Client> findByNameOrChildren(String string, int i);
+    public ArrayList<Client> findByNameOrChildren(String nome, int qtdFilhos);
 
-    public ArrayList<Client> findDistinctByChildren(Integer children);
+    public ArrayList<Client> findByChildrenGreaterThan(int qtdFilhos);
 
-    public ArrayList<Client> findByChildrenGreaterThan(int i);
+    public ArrayList<Client> findByChildrenGreaterThanEqual(int qtdFilhos);
 
-    public ArrayList<Client> findByChildrenGreaterThanEqual(int i);
+    public ArrayList<Client> findByChildrenBetween(int qtdMinima, int qtdMaxia);
 
-    public ArrayList<Client> findByChildrenBetween(int i, int j);
+    public ArrayList<Client> findByNameLike(String nome);
 
-    public ArrayList<Client> findByNameLike(String string);
+    public ArrayList<Client> findByNameContaining(String nome);
 
-    public ArrayList<Client> findByNameContaining(String string);
+    public ArrayList<Client> findByNameContainingOrderByChildren(String nome);
 
-    public ArrayList<Client> findByNameContainingOrderByChildren(String string);
+    public ArrayList<Client> findByNameContainingOrderByChildrenDesc(String nome);
 
-    public ArrayList<Client> findByNameContainingOrderByChildrenDesc(String string);
+    public ArrayList<Client> findByChildrenIn(ArrayList<Integer> qtdFilhos);
 
-    public ArrayList<Client> findByChildrenIn(ArrayList<Integer> idades);
-    
+    public ArrayList<Client> findByChildrenInAndIncomeGreaterThanEqualOrderByNameDesc(ArrayList<Integer> qtdFilhos, double income);
+
 }

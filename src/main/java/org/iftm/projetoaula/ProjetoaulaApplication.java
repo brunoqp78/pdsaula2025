@@ -125,10 +125,10 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 		System.out.println("-------- Saída ----------");
 
 		System.out.println("-------- Saída ----------");
-		ArrayList<Integer> idades = new ArrayList<>();
-		idades.add(1);
-		idades.add(3);
-		listaClientes = repositorio.findByChildrenIn(idades);
+		ArrayList<Integer> qtdFilhos = new ArrayList<>();
+		qtdFilhos.add(1);
+		qtdFilhos.add(3);
+		listaClientes = repositorio.findByChildrenIn(qtdFilhos);
 		System.out.println("-------- Saída Quantidade de filhos ----------");
 		System.out.println(listaClientes.size());// imprimir quantidade de clientes com dois filhos
 		System.out.println("Relatório:::::");
@@ -137,6 +137,16 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 		}
 		System.out.println("-------- Saída ----------");
 
+		System.out.println("-------- Saída ----------");
+		qtdFilhos.add(2);
+		listaClientes = repositorio.findByChildrenInAndIncomeGreaterThanEqualOrderByNameDesc(qtdFilhos, 5000.00);
+		System.out.println("-------- Saída Quantidade de filhos e salaŕio minimo ----------");
+		System.out.println(listaClientes.size());// imprimir quantidade de clientes com dois filhos
+		System.out.println("Relatório:::::");
+		for (int i = 0; i < listaClientes.size(); i++) {
+			System.out.println(listaClientes.get(i).getName() + " - " + listaClientes.get(i).getChildren() + " - R$ " + listaClientes.get(i).getIncome());
+		}
+		System.out.println("-------- Saída ----------");
 
 	}
 
