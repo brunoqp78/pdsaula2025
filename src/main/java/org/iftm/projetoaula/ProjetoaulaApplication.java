@@ -1,11 +1,9 @@
 package org.iftm.projetoaula;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.iftm.projetoaula.entities.Client;
-import org.iftm.projetoaula.repositories.ClientRepository;
+import org.iftm.projetoaula.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,10 +15,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 */
 @SpringBootApplication
 public class ProjetoaulaApplication implements CommandLineRunner {
-	// injeção de dependencia da classe ClientRepository.
+	// injeção de dependencia da classe ClientService.
 	// permite ao SpringBoot instanciar objetos dessa classe.
 	@Autowired
-	private ClientRepository repositorio;
+	private ClientService servicos;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoaulaApplication.class, args);
@@ -31,11 +29,17 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 
 		// Instanciar um objeto da classe Client
 		Client cliente = new Client();
-		cliente.setName("Ana");
+		cliente.setName("1. Ed");
 		cliente.setCpf("000111222-22");
 		cliente.setIncome(10000.00);
 		cliente.setChildren(3);
 		cliente.setBirthDate(Instant.parse("1978-10-09T04:30:00.00Z"));
+		try{
+			servicos.insert(cliente);
+		}catch(IllegalArgumentException e){
+			System.out.println("\n"+e.getMessage()+"\n");
+		}
+		/*
 		repositorio.save(cliente);
 
 		Client cliente2 = new Client(null, "Jose", "11111", 12000.00, Instant.parse("1978-10-09T04:30:00.00Z"), 2);
@@ -84,7 +88,7 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 
 		// findBy indica que é uma consulta, name e children indica quais campo serão
 		// buscados.
-		listaClientes = repositorio.findByNameOrChildren("João Silva", 0);
+		listaClientes = repositorio.findByNameOrChildrenOrderByName("João Silva", 0);
 		System.out.println("-------- Saída Name e Children ----------");
 		System.out.println(listaClientes.size());// imprimir quantidade de clientes com dois filhos
 		System.out.println("Relatório:::::");
@@ -104,7 +108,7 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 
 		System.out.println("-------- Saída ----------");
 
-		listaClientes = repositorio.findByChildrenBetween(1, 3);
+		listaClientes = repositorio.findByChildrenBetweenOrderByName(1, 3);
 		System.out.println("-------- Saída Quantidade de filhos ----------");
 		System.out.println(listaClientes.size());// imprimir quantidade de clientes com dois filhos
 		System.out.println("Relatório:::::");
@@ -147,7 +151,7 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 			System.out.println(listaClientes.get(i).getName() + " - " + listaClientes.get(i).getChildren() + " - R$ " + listaClientes.get(i).getIncome());
 		}
 		System.out.println("-------- Saída ----------");
-
+*/
 	}
 
 }

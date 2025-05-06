@@ -16,13 +16,13 @@ public interface ClientRepository extends JpaRepository<Client, Long>{
 
     public ArrayList<Client> findByNameAndChildren(String nome, int qtdFilhos);
 
-    public ArrayList<Client> findByNameOrChildren(String nome, int qtdFilhos);
+    public ArrayList<Client> findByNameOrChildrenOrderByName(String nome, int qtdFilhos);
 
     public ArrayList<Client> findByChildrenGreaterThan(int qtdFilhos);
 
     public ArrayList<Client> findByChildrenGreaterThanEqual(int qtdFilhos);
 
-    public ArrayList<Client> findByChildrenBetween(int qtdMinima, int qtdMaxia);
+    public ArrayList<Client> findByChildrenBetweenOrderByName(int qtdMinima, int qtdMaxia);
 
     public ArrayList<Client> findByNameLike(String nome);
 
