@@ -92,13 +92,13 @@ public class ClientService {
     }
 
 
-    private void validateName(String nome){
-        if (nome.length() < 2 || nome.length()>200){
-            throw new IllegalArgumentException("Nome inválido!!! O nome precisa ter entre 2 e 200 caracteres.");
+    private void validateName(String name){
+        if (name.length() < 2 || name.length()>200){
+            throw new IllegalArgumentException("Invalid name!!! Name must be between 2 and 200 characters long.");
         }
-        char primeiraLetra = nome.charAt(0);
-        if (primeiraLetra >= '0' && primeiraLetra<= '9'){
-            throw new IllegalArgumentException("Nome inválido!!! O nome não pode começar com números.");
+        char firstLetter = name.charAt(0);
+        if (firstLetter >= '0' && firstLetter<= '9'){
+            throw new IllegalArgumentException("Invalid name!!! Name cannot start with numbers.");
         }
     }
 }
