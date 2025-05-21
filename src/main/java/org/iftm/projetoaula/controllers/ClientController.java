@@ -44,6 +44,7 @@ public class ClientController {
             return ResponseEntity.ok(clients);
         }
         else{
+            System.out.println(name);
             return ResponseEntity.notFound().build();
         }
     
