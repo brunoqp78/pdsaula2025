@@ -61,6 +61,8 @@ public class ClientService {
     // Regra: Deletar cliente
     @Transactional
     public void delete(Long id) {
+        if (repositorio.findById(id).isEmpty())
+            throw new IllegalArgumentException("There is not this client!!!");
         repositorio.deleteById(id);
     }
 
