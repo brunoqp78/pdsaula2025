@@ -8,6 +8,7 @@ import org.iftm.projetoaula.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 //anotação que define o endereço(URI) no qual a api irá responder
 //localhost:8080/clients
 @RequestMapping("/clients")
+//dá permição a qualquer URI acessar a minha API
+@CrossOrigin(origins="*")
 public class ClientController {
 
     //fazer injeção de dependencia da classe da camada Service
@@ -51,8 +54,7 @@ public class ClientController {
         else{
             System.out.println(name);
             return ResponseEntity.notFound().build();
-        }
-    
+        }    
     }
     
 
@@ -93,12 +95,6 @@ public class ClientController {
             return "Client delete sucessfull!!";
         } catch (Exception e) {
             return e.getMessage();
-        }
-        
+        }        
     }
-    
-
-    
-    
-
 }
