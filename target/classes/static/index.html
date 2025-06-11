@@ -4,79 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Informações do Cliente</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        #client-info {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1,
-        h2 {
-            color: #333;
-        }
-
-        #client-details,
-        #client-address,
-        #client-category,
-        #client-relatives {
-            margin-bottom: 20px;
-            color: blue;
-        }
-
-        #client-details,
-        #client-address,
-        #client-category,
-        #client-relatives {
-            margin: 5px 0;
-        }
-
-        .error {
-            color: red;
-            font-weight: bold;
-        }
-
-        .input-container {
-            margin-bottom: 20px;
-        }
-
-        .input-container label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .input-container input {
-            width: 100%;
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .input-container button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #173555;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .input-container button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -91,47 +19,6 @@
         <div id="client-details"></div>
     </div>
 
-    <script>
-        function fetchData(){
-            // criar as variáveis que representa os campos do formulários
-            const dadosCliente = document.getElementById('client-details');
-            // iremos capturar o id presente no input do html
-            const clientId = document.getElementById('client-id').value;
-
-            //limpar os dados do cliente atual
-            dadosCliente.innerHTML=``;
-
-            //validando se o ID informado é válido!!!
-            if (!clientId){
-                alert("O campo ID é obrigatório");
-                return;
-            }
-
-            // construir a URI
-            const uri = `http://localhost:8080/clients/id/${clientId}`;
-
-            //função assincrona que irá criar a requisição get para o endpoint de nossa apiRest
-            async function fetchClientData() {
-                //chama a APIREST em seu endpoint /id/{id} - findById
-                const response = await fetch(uri);
-                //caso a resposta não seja um Json, mostre essa mensagem
-                if (!response.ok){
-                    alert("Não foi possível retornar os dados do cliente!!!")
-                }else{
-                    //captura o Json da resposta 
-                    const json = await response.json();
-                    //imprime os dados na área do cliente
-                    dadosCliente.innerHTML = 
-                    `<p>Nome: ${json.name} </p>
-                    <p>Cpf: ${json.cpf} </p>
-                    <p>Salário: ${json.income} </p>
-                    <p>N. Filhos: ${json.children} </p>`;            
-                }
-            }
-
-            fetchClientData();            
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
-
 </html>
