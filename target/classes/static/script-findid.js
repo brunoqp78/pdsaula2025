@@ -1,5 +1,5 @@
         
-        function fetchData(){
+        function apresentarDadosCliente(){
             // criar as variáveis que representa os campos do formulários
             const dadosCliente = document.getElementById('client-details');
             // iremos capturar o id presente no input do html
