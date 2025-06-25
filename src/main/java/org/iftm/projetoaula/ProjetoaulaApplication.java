@@ -2,8 +2,10 @@ package org.iftm.projetoaula;
 
 import java.time.Instant;
 
+import org.iftm.projetoaula.entities.Address;
 import org.iftm.projetoaula.entities.Client;
-import org.iftm.projetoaula.services.ClientService;
+import org.iftm.projetoaula.repositories.AddressRepository;
+import org.iftm.projetoaula.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,8 +19,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ProjetoaulaApplication implements CommandLineRunner {
 	// injeção de dependencia da classe ClientService.
 	// permite ao SpringBoot instanciar objetos dessa classe.
+	//@Autowired
+	//private ClientService servicos;
+
 	@Autowired
-	private ClientService servicos;
+	private ClientRepository repositorioCliente;
+
+	@Autowired
+	private AddressRepository repositorioEndereco;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoaulaApplication.class, args);
@@ -26,7 +34,6 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
 		// Instanciar um objeto da classe Client
 		Client cliente = new Client();
 		cliente.setName("1. Ed");
@@ -34,13 +41,20 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 		cliente.setIncome(10000.00);
 		cliente.setChildren(3);
 		cliente.setBirthDate(Instant.parse("1978-10-09T04:30:00.00Z"));
+		Address address = new Address(null, "Av Liberdade", "Uberlândia", "MG", "38400000");
+		cliente.setAddress(address);
+		repositorioEndereco.save(address);
+		
+		repositorioCliente.save(cliente);
+		
+		/*
 		try{
 			servicos.insert(cliente);
 		}catch(IllegalArgumentException e){
 			System.out.println("\n"+e.getMessage()+"\n");
 		}
+			*/
 		/*
-		repositorio.save(cliente);
 
 		Client cliente2 = new Client(null, "Jose", "11111", 12000.00, Instant.parse("1978-10-09T04:30:00.00Z"), 2);
 		repositorio.save(cliente2);

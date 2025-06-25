@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
@@ -40,17 +42,27 @@ public class Client implements Serializable {
     // anotação que define a não persistencia do atributo no banco de dados.
     @Transient    
     private boolean status = true;
+
+    // 1 .. 1 -> OneToOne
+    // 1 .. n -> OneToMany
+    // n .. n -> ManyToMany
+
+    // criar uma referência ao endereço do Cliente
+    @OneToOne
+    @JoinColumn(name = "address_fk", referencedColumnName = "id")
+    private Address address;
     
     //construtores
     public Client(){}
 
-    public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children ) {
+    public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children, Address address ) {
         this.birthDate = birthDate;
         this.children = children;
         this.cpf = cpf;
         this.id = id;
         this.income = income;
         this.name = name;
+        this.address = address;
     }
 
 
@@ -103,6 +115,15 @@ public class Client implements Serializable {
         this.children = children;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    
     // outros métodos
 
     
