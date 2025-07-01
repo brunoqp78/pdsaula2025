@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -52,10 +53,16 @@ public class Client implements Serializable {
     @JoinColumn(name = "address_fk", referencedColumnName = "id")
     private Address address;
     
+    // criar a referência para um objeto categória
+    // relação de n para 1, acompanhar a direção da relação no DER.
+    @ManyToOne
+    @JoinColumn(nullable=false, name="category_fk", referencedColumnName="id")
+    private Category category;
+
     //construtores
     public Client(){}
 
-    public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children, Address address ) {
+    public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children, Address address, Category category ) {
         this.birthDate = birthDate;
         this.children = children;
         this.cpf = cpf;
@@ -63,6 +70,7 @@ public class Client implements Serializable {
         this.income = income;
         this.name = name;
         this.address = address;
+        this.category = category;
     }
 
 
@@ -121,6 +129,14 @@ public class Client implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     

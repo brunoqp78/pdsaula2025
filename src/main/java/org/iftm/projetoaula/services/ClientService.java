@@ -18,6 +18,15 @@ public class ClientService {
     // Regra: Listar todos os clientes
     @Transactional(readOnly = true)
     public List<Client> findAll() {
+        //codigo abaixo permite resolver o problema de redundância sem modificar as anotações
+        /*
+        List<Client> clients = repositorio.findAll();
+        for (Client cli : clients) {
+            if (cli.getCategory()!=null)
+                cli.getCategory().setClients(null);
+        }
+        return clients;
+                */
         return repositorio.findAll();
     }
 

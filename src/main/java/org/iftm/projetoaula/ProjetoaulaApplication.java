@@ -3,8 +3,10 @@ package org.iftm.projetoaula;
 import java.time.Instant;
 
 import org.iftm.projetoaula.entities.Address;
+import org.iftm.projetoaula.entities.Category;
 import org.iftm.projetoaula.entities.Client;
 import org.iftm.projetoaula.repositories.AddressRepository;
+import org.iftm.projetoaula.repositories.CategoryRepository;
 import org.iftm.projetoaula.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,10 +25,13 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 	//private ClientService servicos;
 
 	@Autowired
-	private ClientRepository repositorioCliente;
+	private ClientRepository repositoryClient;
 
 	@Autowired
-	private AddressRepository repositorioEndereco;
+	private AddressRepository repositoryAddress;
+
+	@Autowired
+	private CategoryRepository repositoryCategory;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoaulaApplication.class, args);
@@ -43,9 +48,11 @@ public class ProjetoaulaApplication implements CommandLineRunner {
 		cliente.setBirthDate(Instant.parse("1978-10-09T04:30:00.00Z"));
 		Address address = new Address(null, "Av Liberdade", "Uberlândia", "MG", "38400000");
 		cliente.setAddress(address);
-		repositorioEndereco.save(address);
-		
-		repositorioCliente.save(cliente);
+		Category category = new Category(null, "Comum");
+		cliente.setCategory(category);
+		repositoryAddress.save(address);
+		repositoryCategory.save(category);
+		repositoryClient.save(cliente);
 		
 		/*
 		try{
