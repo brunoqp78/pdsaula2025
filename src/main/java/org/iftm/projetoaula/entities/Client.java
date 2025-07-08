@@ -3,6 +3,8 @@ package org.iftm.projetoaula.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,12 +53,14 @@ public class Client implements Serializable {
     // criar uma referência ao endereço do Cliente
     @OneToOne
     @JoinColumn(name = "address_fk", referencedColumnName = "id")
+    @JsonIgnoreProperties("client")
     private Address address;
     
     // criar a referência para um objeto categória
     // relação de n para 1, acompanhar a direção da relação no DER.
     @ManyToOne
-    @JoinColumn(nullable=false, name="category_fk", referencedColumnName="id")
+    @JoinColumn(nullable=false, name="category_fk", referencedColumnName="id") 
+    @JsonIgnoreProperties("clients")   
     private Category category;
 
     //construtores

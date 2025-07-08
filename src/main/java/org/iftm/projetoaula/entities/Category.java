@@ -3,6 +3,8 @@ package org.iftm.projetoaula.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,8 @@ public class Category implements Serializable {
     private String name;
 
     // criar a referência a todos os clientes que tenham essa categoria.
-    @OneToMany(fetch=FetchType.LAZY)
+    @OneToMany(mappedBy= "category", fetch=FetchType.LAZY)
+    @JsonIgnoreProperties("category")
     private List<Client> clients;
 
     public Category(){}

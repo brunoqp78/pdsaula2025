@@ -2,6 +2,8 @@ package org.iftm.projetoaula.entities;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +27,8 @@ public class Address implements Serializable {
     private String zipCode;
 
     //@OneToOne(mappedBy = "address")
-    @OneToOne(fetch=FetchType.LAZY)
+    @OneToOne(mappedBy = "address", fetch=FetchType.LAZY)    
+    @JsonIgnoreProperties("address")
     private Client client;
 
 
