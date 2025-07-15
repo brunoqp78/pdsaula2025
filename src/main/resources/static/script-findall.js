@@ -44,6 +44,8 @@ function apresentarDadosCliente() {
             '<tr><th>Renda</th><td class="income">' + salarioFormatado + '</td></tr>' +
             '<tr><th>Nascimento</th><td>' + dataFormatada + '</td></tr>' +
             '<tr><th>Filhos</th><td class="children">' + cliente.children + '</td></tr>' +
+            '<tr><th>Endereço</th><td>' + cliente.address.street + " - " + cliente.address.city + "/" + cliente.address.state + '</td></tr>' +
+            '<tr><th>Categoria</th><td>' + cliente.category.name + '</td></tr>' +
             '</table>';
 
         //modificando a área dos dados de um cliente com os dados do cliente buscado.
@@ -100,7 +102,9 @@ function apresentarTodosClientes() {
                 '<td>' + cliente.cpf + '</td>' +
                 '<td class="income">' + salarioFormatado + '</td>' +
                 '<td>' + dataFormatada + '</td>' +
-                '<td class="children">' + cliente.children + '</td>';
+                '<td class="children">' + cliente.children + '</td>' +
+                '<td>' + cliente.category.name + '</td>' +
+                '<td>' + cliente.address.city + '/' + cliente.address.state + '</td>';
             //inserir a linha na tabela
             tabelaClientes.appendChild(linhaAtual);
         }
